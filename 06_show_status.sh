@@ -1,3 +1,3 @@
 #!/bin/bash
 #alias kg='/usr/local/bin/kubectl-cnpg'
-kubectl-cnpg status cluster-example
+watch -c -n 5 kubectl-cnpg status cluster-example
