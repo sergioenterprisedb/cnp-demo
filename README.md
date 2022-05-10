@@ -12,7 +12,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 # Prerequisites
 - K8s
 - Docker
-- In my laptop, I've installed K3d (k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker).
+- In my laptop, I've installed K3d. k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
 
 # Demo
 Execute commands in the correct order:
