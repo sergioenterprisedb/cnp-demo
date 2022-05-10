@@ -27,6 +27,10 @@ Open a new session and execute:
 ```
 . ./06_show_status.sh
 ```
+Open another session and execute MinIO server (S3 Object Storage compatible):
+```
+. ./start_minio_docker_server.sh
+```
 Go back to the previous session and execute:
 ```
 . ./07_insert_data.sh
@@ -41,4 +45,9 @@ To delete your cluster execute:
 ```
 # Warning: script adapted for K3d
 . ./99_remove_cluster.sh
+```
+
+# Useful commands
+```
+. ./get_ip.sh
 ```
