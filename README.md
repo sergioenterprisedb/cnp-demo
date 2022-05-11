@@ -39,6 +39,7 @@ Go back to the previous session and execute:
 . ./10_backup_cluster.sh
 . ./11_backup_describe.sh
 . ./12_restore_cluster.sh
+. ./13_failover.sh
 ```
 
 To delete your cluster execute:
