@@ -8,6 +8,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Failover
 - Backup
 - Recovery
+- Rolling updates
 
 # Prerequisites
 - K8s
