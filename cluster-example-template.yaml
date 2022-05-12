@@ -9,9 +9,3 @@ spec:
 
   storage:
     size: 1Gi
-
-  #postgresql:
-  #  parameters:
-  #    pg_stat_statements.max: "10000"
-  #    pg_stat_statements.track: all
-
