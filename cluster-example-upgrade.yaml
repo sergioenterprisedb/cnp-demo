@@ -5,7 +5,7 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.2
-  imagePullPolicy: Never
+  #imagePullPolicy: Never
 
   storage:
     size: 2Gi

@@ -15,49 +15,40 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - In my laptop, I've installed K3d. k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
 
 # Demo
-Before to start the demo, if your demo is offline (without an internet connexion), you have to pull previously your images from the repo. To proceed, execute these 2 scripts:
-```
-# Import images in docker
-./docker_pull_images.sh
-
-# Import images in your node k3d
-./k3d_import_images.sh
-```
- 
 Execute commands in the correct order:
 ```
-. ./01_install_plugin.sh
-. ./02_install_operator.sh
-. ./03_check_operator_installed.sh
-. ./04_get_cluster_config_file.sh
-. ./05_install_cluster.sh
+./01_install_plugin.sh
+./02_install_operator.sh
+./03_check_operator_installed.sh
+./04_get_cluster_config_file.sh
+./05_install_cluster.sh
 ```
 Open a new session and execute:
 ```
-. ./06_show_status.sh
+./06_show_status.sh
 ```
 Open another session and execute MinIO server (S3 Object Storage compatible):
 ```
-. ./start_minio_docker_server.sh
+./start_minio_docker_server.sh
 ```
 Go back to the previous session and execute:
 ```
-. ./07_insert_data.sh
-. ./08_promote.sh
-. ./09_upgrade.sh
-. ./10_backup_cluster.sh
-. ./11_backup_describe.sh
-. ./12_restore_cluster.sh
-. ./13_failover.sh
+./07_insert_data.sh
+./08_promote.sh
+./09_upgrade.sh
+./10_backup_cluster.sh
+./11_backup_describe.sh
+./12_restore_cluster.sh
+./13_failover.sh
 ```
 
 To delete your cluster execute:
 ```
 # Warning: script adapted for K3d
-. ./99_remove_cluster.sh
+./99_remove_cluster.sh
 ```
 
 # Useful commands
 ```
-. ./get_ip.sh
+./get_ip.sh
 ```
