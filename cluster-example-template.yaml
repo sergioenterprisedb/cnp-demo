@@ -5,5 +5,13 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14
+  imagePullPolicy: Never
+
   storage:
     size: 1Gi
+
+  #postgresql:
+  #  parameters:
+  #    pg_stat_statements.max: "10000"
+  #    pg_stat_statements.track: all
+

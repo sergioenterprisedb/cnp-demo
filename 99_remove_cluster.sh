@@ -10,6 +10,8 @@ kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-p
 # Delete cluster
 k3d cluster delete
 k3d cluster create
+./docker_pull_images.sh
+./k3d_import_images.sh
 
 # Stop MinIO
 #ps | grep "start_minio" | grep -v grep | awk '{print $1}' | xargs -I % kill %

@@ -15,6 +15,15 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - In my laptop, I've installed K3d. k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
 
 # Demo
+Before to start the demo, if your demo is offline (without an internet connexion), you have to pull previously your images from the repo. To proceed, execute these 2 scripts:
+```
+# Import images in docker
+./docker_pull_images.sh
+
+# Import images in your node k3d
+./k3d_import_images.sh
+```
+ 
 Execute commands in the correct order:
 ```
 . ./01_install_plugin.sh
