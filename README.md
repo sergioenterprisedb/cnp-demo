@@ -30,6 +30,7 @@ Open a new session and execute:
 ```
 Open another session and execute MinIO server (S3 Object Storage compatible):
 ```
+# URL: http://127.0.0.1:9001
 # User: admin
 # Password: password
 
