@@ -30,6 +30,9 @@ Open a new session and execute:
 ```
 Open another session and execute MinIO server (S3 Object Storage compatible):
 ```
+# User: admin
+# Password: password
+
 ./start_minio_docker_server.sh
 ```
 Go back to the previous session and execute:
