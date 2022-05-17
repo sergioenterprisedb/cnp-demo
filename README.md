@@ -29,6 +29,8 @@ Open a new session and execute:
 ./06_show_status.sh
 ```
 Open another session and execute MinIO server (S3 Object Storage compatible):
+Please, check the IP of your computer and replace in file cluster-example-upgrade.yaml.
+
 ```
 # URL: http://127.0.0.1:9001
 # User: admin
