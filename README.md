@@ -11,9 +11,11 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Rolling updates
 
 # Prerequisites
-- K8s
+- K8s environment (K8s, k3d, kind)
 - Docker
-- In my laptop, I've installed K3d. k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
+- Tested with K3d and kind. 
+  - k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
+  - kind is a tool for running local Kubernetes clusters using Docker container “nodes”.
 
 # Demo
 Execute commands in the correct order:
@@ -53,6 +55,15 @@ To delete your cluster execute:
 ```
 # Warning: script adapted for K3d
 ./99_remove_cluster.sh
+```
+
+# How to deploy and access the Kubernetes Dashboard
+```
+./dashboard_install.sh
+```
+# Uninstall Kubernetes Dashboard
+```
+./dashboard_uninstall.sh
 ```
 
 # Useful commands
