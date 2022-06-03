@@ -17,6 +17,7 @@ kind create cluster
 
 #./docker_pull_images.sh
 ./k3d_import_images.sh
+./kind_import_images.sh
 
 # Stop MinIO
 #ps | grep "start_minio" | grep -v grep | awk '{print $1}' | xargs -I % kill %
