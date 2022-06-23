@@ -4,7 +4,8 @@ metadata:
   name: cluster-restore
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.3
+  #imagePullPolicy: Never
 
   storage:
     size: 1Gi
