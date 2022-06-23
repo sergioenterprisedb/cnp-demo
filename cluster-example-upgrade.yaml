@@ -4,7 +4,7 @@ metadata:
   name: cluster-example
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.2
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.4
   #imagePullPolicy: Never
 
   storage:
@@ -13,7 +13,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: "s3://cnp/"
-      endpointURL: "http://172.16.8.60:9000"
+      endpointURL: "http://172.20.10.4:9000"
       s3Credentials:
         accessKeyId:
           name: minio-creds
