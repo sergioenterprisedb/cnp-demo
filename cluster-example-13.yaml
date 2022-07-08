@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-13
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:13
+  #imagePullPolicy: Never
+
+  bootstrap:
+    initdb:
+      database: app
+
+  storage:
+    size: 1Gi
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "1"
+    limits:
+      memory: "1Gi"
+      cpu: "2"

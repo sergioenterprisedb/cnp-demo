@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Uninstall cluster
-kubectl delete -f cluster-example.yaml
+./delete_all_clusters.sh
 rm cluster-example.yaml
 
 # Uninstall operator
-kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.15.0.yaml
+version1=`kubectl-cnpg version | awk '{ print $2 }' | awk -F":" '{ print $2}'`
+version2=${version%??}
+kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-${version2}/releases/cnpg-${version1}.yaml
 
 # K3d cluster
 k3d cluster delete

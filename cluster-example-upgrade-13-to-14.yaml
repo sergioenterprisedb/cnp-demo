@@ -1,0 +1,38 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-14
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:14
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - app
+        source:
+          externalCluster: cluster-example-13
+
+  externalClusters:
+    - name: cluster-example-13
+      connectionParameters:
+        # Use the correct IP or host name for the source database
+        host: cluster-example-13-rw
+        user: postgres
+        dbname: postgres
+      password:
+        name: cluster-example-13-superuser
+        key: password
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "1"
+    limits:
+      memory: "1Gi"
+      cpu: "2"
