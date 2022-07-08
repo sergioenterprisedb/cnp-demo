@@ -50,8 +50,23 @@ Go back to the previous session and execute:
 ./12_restore_cluster.sh
 ./13_failover.sh
 ```
+# Major upgrade
+Major upgrade feature has been introduced in 1.16 version.
+In this demo I show you how to upgrade your cluster from PosgreSQL v13 to v14.
+```
+./20_create_cluster_v13.sh
+./21_insert_data_cluster_v13.sh
+./22_verify_data_inserted.sh
+./23_upgrade_v13_to_v14.sh
+./24_verify_data_migrated.sh
+```
 
 To delete your cluster execute:
+```
+./delete_all_clusters.sh
+```
+
+If you want to delete and create your Kind and K3d clusters and pull the PostgreSQL images from Docker to Kind or/and K3d, execute this script:
 ```
 # Warning: script adapted for K3d
 ./99_remove_cluster.sh
