@@ -9,6 +9,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Backup
 - Recovery
 - Rolling updates (minor and major)
+- Last CloudNativePG tested version is 1.17.0
 
 # Prerequisites
 - K8s environment (K8s, k3d, kind)
