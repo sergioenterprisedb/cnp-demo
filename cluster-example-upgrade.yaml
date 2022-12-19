@@ -6,6 +6,13 @@ spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.5
   #imagePullPolicy: Never
+  minSyncReplicas: 1
+  maxSyncReplicas: 1
+
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
 
   storage:
     size: 2Gi
