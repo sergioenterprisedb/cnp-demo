@@ -5,7 +5,7 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.5
-  #imagePullPolicy: Never
+  #imagePullPolicy: Always
   minSyncReplicas: 1
   maxSyncReplicas: 1
 
@@ -15,12 +15,12 @@ spec:
       pg_stat_statements.track: all
 
   storage:
-    size: 2Gi
+    size: 1Gi
 
   backup:
     barmanObjectStore:
       destinationPath: "s3://cnp/"
-      endpointURL: "http://192.168.1.25:9000"
+      endpointURL: "http://192.168.1.37:9000"
       s3Credentials:
         accessKeyId:
           name: minio-creds
