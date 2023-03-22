@@ -75,6 +75,23 @@ If you want to delete and create your Kind and K3d clusters and pull the Postgre
 # Warning: script adapted for K3d
 ./99_remove_cluster.sh
 ```
+# Monitoring with Prometheus/Grafana
+```
+cd monitoring
+./01_install_prometheus_repo.sh
+./02_prometheus_operator.sh
+./03_prometheus_rules.sh
+./04_grafana_dashboard.sh
+./05_port_forwarding_prometheus_grafana.sh
+
+./99_remove_monitoring.sh
+```
+- To connect to Grafana dashboard: http://localhost:3000
+- To connect to Prometheus dashboard: http://localhost:9090
+
+![](./images/grafana.png)
+![](./images/prometheus.png)
+
 
 # How to deploy and access the Kubernetes Dashboard
 ```
