@@ -8,6 +8,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Failover
 - Backup
 - Recovery
+- Scale out/down
 - Rolling updates (minor and major)
 - Last CloudNativePG tested version is 1.19.0
 
@@ -50,6 +51,8 @@ Go back to the previous session and execute:
 ./11_backup_describe.sh
 ./12_restore_cluster.sh
 ./13_failover.sh
+./14_scale_out.sh
+./15_scale_down.sh
 ```
 # Major upgrade
 Major upgrade feature has been introduced in 1.16 version.
