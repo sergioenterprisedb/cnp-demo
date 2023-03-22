@@ -35,11 +35,10 @@ Open a new session and execute:
 Open another session and execute MinIO server (S3 Object Storage compatible):
 Please, check the IP of your computer and replace in file cluster-example-upgrade.yaml.
 
+- **URL:** http://127.0.0.1:9001
+- **User:** admin
+- **Password:** password
 ```
-# URL: http://127.0.0.1:9001
-# User: admin
-# Password: password
-
 ./start_minio_docker_server.sh
 ```
 Go back to the previous session and execute:
@@ -86,7 +85,11 @@ cd monitoring
 
 ./99_remove_monitoring.sh
 ```
+
 - To connect to Grafana dashboard: http://localhost:3000
+  - **User:** admin
+  - **Password:** prom-operator
+
 - To connect to Prometheus dashboard: http://localhost:9090
 
 ![](./images/grafana.png)
