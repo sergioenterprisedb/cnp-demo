@@ -56,6 +56,12 @@ Go back to the previous session and execute:
 ./13_failover.sh
 ./14_scale_out.sh
 ./15_scale_down.sh
+
+# PITR
+./16_pitr_insert_two_lines.sh
+./17_pitr_backup.sh
+./18_pitr_insert_new_line.sh
+./19_pitr_restore_line_one.sh
 ```
 # Major upgrade
 Major upgrade feature has been introduced in 1.16 version.
@@ -67,7 +73,13 @@ In this demo I show you how to upgrade your cluster from PosgreSQL v13 to v14.
 ./23_upgrade_v13_to_v14.sh
 ./24_verify_data_migrated.sh
 ```
-
+# Fencing and Hibernation
+```
+./30_fencing_on.sh
+./31_fencing_off.sh
+./32_hibernation_on.sh
+./33_hibernation_off.sh
+```
 To delete your cluster execute:
 ```
 ./delete_all_clusters.sh
