@@ -9,10 +9,16 @@ spec:
   minSyncReplicas: 1
   maxSyncReplicas: 1
 
+  # Reduce the frequency of standby HA slots updates to once every 5 minutes
+  replicationSlots:
+    highAvailability:
+      enabled: true
+
   postgresql:
     parameters:
       pg_stat_statements.max: "10000"
       pg_stat_statements.track: all
+      #timezone: "Europe/Amsterdam"
 
   storage:
     size: 1Gi
@@ -21,10 +27,10 @@ spec:
     enablePodMonitor: true
 
   backup:
-    target: "prefer-standby"
+    #target: "prefer-standby"
     barmanObjectStore:
       destinationPath: "s3://cnp/"
-      endpointURL: "http://192.168.1.25:9000"
+      endpointURL: "http://192.168.1.37:9000"
       s3Credentials:
         accessKeyId:
           name: minio-creds

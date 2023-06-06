@@ -10,7 +10,10 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Recovery
 - Scale out/down
 - Rolling updates (minor and major)
-- Monitoring (Prometheus/Graphana)
+- Point In Time Recovery (PITR)
+- Fencing
+- Replication slots (for HA)
+- Monitoring (Prometheus/Grafana)
 - Last CloudNativePG tested version is 1.19.0
 
 # Prerequisites
