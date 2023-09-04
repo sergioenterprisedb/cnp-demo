@@ -3,7 +3,8 @@
 
 pitr_date=$(kubectl exec -it cluster-example-1 -- psql -X -A -t -c "select min(timestamp+interval '1 second') from test;") 
 echo "${pitr_date%?}"
-
+ip=`./get_ip.sh`
+printf 'IP: $ip'
 cat > ./pitr/restore.yaml <<EOF
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -27,7 +28,7 @@ spec:
     - name: cluster-example
       barmanObjectStore:
         destinationPath: "s3://cnp/"
-        endpointURL: "http://192.168.1.37:9000"
+        endpointURL: "http://${ip}:9000"
         s3Credentials:
           accessKeyId:
             name: minio-creds

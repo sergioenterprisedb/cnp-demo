@@ -14,7 +14,9 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Fencing
 - Replication slots (for HA)
 - Monitoring (Prometheus/Grafana)
-- Last CloudNativePG tested version is 1.20.0
+- Operator upgrade
+- PostgreSQL audit with PGAudit
+- Last CloudNativePG tested version is 1.20.2
 
 # Prerequisites
 - K8s environment (K8s, k3d, kind)
@@ -22,6 +24,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Tested with K3d and kind. 
   - k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
   - kind is a tool for running local Kubernetes clusters using Docker container “nodes”.
+- jq (optional if you want to format JSON logs outputs)
 
 # Demo
 Execute commands in the correct order:
@@ -80,6 +83,12 @@ In this demo I show you how to upgrade your cluster from PosgreSQL v13 to v14.
 ./32_hibernation_on.sh
 ./33_hibernation_off.sh
 ```
+# Operator management
+```
+./40_operator_list_images.sh
+./41_operator_upgrade.sh
+```
+
 To delete your cluster execute:
 ```
 ./delete_all_clusters.sh
