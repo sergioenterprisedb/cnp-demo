@@ -19,10 +19,10 @@ spec:
       pg_stat_statements.max: "10000"
       pg_stat_statements.track: all
       #timezone: "Europe/Amsterdam"
-      "pgaudit.log": "all, -misc"
-      "pgaudit.log_catalog": "off"
-      "pgaudit.log_parameter": "on"
-      "pgaudit.log_relation": "on"
+      #"pgaudit.log": "all, -misc"
+      #"pgaudit.log_catalog": "off"
+      #"pgaudit.log_parameter": "on"
+      #"pgaudit.log_relation": "on"
   storage:
     size: 1Gi
 
