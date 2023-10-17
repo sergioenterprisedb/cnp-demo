@@ -5,6 +5,7 @@ metadata:
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:14
+  enableSuperuserAccess: true
 
   storage:
     size: 1Gi
