@@ -15,6 +15,7 @@ spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14.2
   #imagePullPolicy: Never
+  enableSuperuserAccess: true
 
   # Reduce the frequency of standby HA slots updates to once every 5 minutes
   replicationSlots:
@@ -43,3 +44,8 @@ spec:
     limits:
       memory: "1Gi"
       cpu: "2"
+
+  #affinity:
+  #  nodeSelector:
+  #    workload: dc1
+

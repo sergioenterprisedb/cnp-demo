@@ -1,8 +1,10 @@
 #!/bin/bash
 . ./config.sh
-printf "${green}kubectl exec -i cluster-example-1 -- psql < sqltest.sql${reset}\n"
+. ./primary.sh
 
-kubectl exec -i cluster-example-1 -- psql < sqltest.sql
+printf "${green}kubectl exec -i ${primary} -- psql < sqltest.sql${reset}\n"
+
+kubectl exec -i ${primary} -- psql < sqltest.sql
 
 # Worldcup sample ata
 cd worldcup_data
