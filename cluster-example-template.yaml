@@ -24,7 +24,7 @@ spec:
     #updateInterval: 300
 
   minSyncReplicas: 1
-  maxSyncReplicas: 1
+  maxSyncReplicas: 2
 
   postgresql:
     parameters:
