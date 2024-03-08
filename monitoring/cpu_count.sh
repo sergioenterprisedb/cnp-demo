@@ -1,5 +1,27 @@
 #!/bin/bash
 
+########################################################################################################################
+# Author:      Sergio Romera                                                                                           #
+# Date:        08/03/2024                                                                                              #
+# Subject:     Pod cpu count                                                                                           #
+# Description: This script count the number of CPU's per cluster in all K8s namespaces                                 #
+# Limitations: This version doesn't support fractions of cpu's                                                         #
+#                                                                                                                      #
+# ./cpu_count.sh                                                                                                       #
+# Namespace                     Cluster              Pod name                      IP            Type        CPU's     #
+# ----------------              -------------------  ----------------------------  ------------  ----------  -----     #
+# default                       cluster-a            cluster-a-1                   10.1.27.53    primary     1         #
+# default                       cluster-a            cluster-a-2                   10.1.27.55    replica     1         #
+# Cluster cluster-a CPU count:  2                                                                                      #
+#                                                                                                                      #
+# Namespace                     Cluster              Pod name                      IP            Type        CPU's     #
+# ----------------              -------------------  ----------------------------  ------------  ----------  -----     #
+# test                          cluster-b            cluster-b-1                   10.1.27.69    primary     1         #
+# Cluster cluster-b CPU count:  1                                                                                      #
+#                                                                                                                      #
+# Global cluster CPU count:     3                                                                                      #
+########################################################################################################################
+
 #cluster_line=""
 cluster_name=""
 cluster_name_old=""
