@@ -49,8 +49,6 @@ kubectl get pod -A \
 {'\n'}" | \
 grep -E "primary|replica" >/tmp/cnp_cpu_count.csv
 
-#cluster_old=`echo $new_line | awk -F "\"*,\"*" '{print $1}'`
-
 while read LINE
 do
 
@@ -90,4 +88,4 @@ echo ",,">>/tmp/total_cpu.csv
 echo "Global cluster CPU count:,$cluster_cpu_count_total_k8s" >>/tmp/total_cpu.csv
 
 cat /tmp/total_cpu.csv | sed -e 's/,,/, ,/g' | column -s, -t 
-printf "\n"
+echo ""
