@@ -85,7 +85,7 @@ done < /tmp/cnp_cpu_count.csv
 
 echo "Cluster $cluster_name CPU count:,$cluster_cpu_count_total" >>/tmp/total_cpu.csv
 echo ",,">>/tmp/total_cpu.csv
-echo "Global cluster CPU count:,$cluster_cpu_count_total_k8s" >>/tmp/total_cpu.csv
+echo "Global clusters CPU count:,$cluster_cpu_count_total_k8s" >>/tmp/total_cpu.csv
 
 cat /tmp/total_cpu.csv | sed -e 's/,,/, ,/g' | column -s, -t 
 echo ""
