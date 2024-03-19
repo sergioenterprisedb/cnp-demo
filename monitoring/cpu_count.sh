@@ -37,10 +37,10 @@ cluster_cpu_count_total_k8s=0   # cluster global count
 i=1                             # line number read
 
 dir="./tmp"
-file_cnp_cpu_count_header="./tmp/cnp_cpu_count_header.csv"
-file_cnp_cpu_count_cluster="./tmp/file_cnp_cpu_count_cluster.csv"
-file_cnp_cpu_count="./tmp/cnp_cpu_count.csv"
-file_total_cpu="./tmp/total_cpu.csv"
+file_cnp_cpu_count_header="$dir/cnp_cpu_count_header.csv"
+file_cnp_cpu_count_cluster="$dir/file_cnp_cpu_count_cluster.csv"
+file_cnp_cpu_count="$dir/cnp_cpu_count.csv"
+file_total_cpu="$dir/total_cpu.csv"
 
 if [[ ! -e $dir ]]; then
     mkdir $dir
