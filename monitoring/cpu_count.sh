@@ -36,12 +36,24 @@ cluster_cpu_count_total=0       # cluster group count
 cluster_cpu_count_total_k8s=0   # cluster global count
 i=1                             # line number read
 
-rm /tmp/total_cpu.csv
-rm /tmp/cnp_cpu_count_header.csv
+dir="./tmp"
+file_cnp_cpu_count_header="./tmp/cnp_cpu_count_header.csv"
+file_cnp_cpu_count_cluster="./tmp/file_cnp_cpu_count_cluster.csv"
+file_cnp_cpu_count="./tmp/cnp_cpu_count.csv"
+file_total_cpu="./tmp/total_cpu.csv"
+
+if [[ ! -e $dir ]]; then
+    mkdir $dir
+fi
+
+rm -f $file_cnp_cpu_count
+rm -f $file_cnp_cpu_count_cluster
+rm -f $file_cnp_cpu_count_header
+rm -f $file_total_cpu
 
 echo ""
-echo "Namespace,Cluster,Pod name,IP,Type,CPU's" > /tmp/cnp_cpu_count_header.csv
-echo "-----------------------------------,-------------------,----------------------------,------------,----------,-----" >> /tmp/cnp_cpu_count_header.csv
+echo "Namespace,Cluster,Pod name,IP,Type,CPU's" > $file_cnp_cpu_count_header
+echo "-----------------------------------,-------------------,----------------------------,------------,----------,-----" >> $file_cnp_cpu_count_header
 
 kubectl get pod -A \
 -o=jsonpath="\
@@ -53,7 +65,7 @@ kubectl get pod -A \
 {.metadata.labels.role},\
 {.spec.containers[*].resources.limits.cpu}\
 {'\n'}" | \
-grep -E "primary|replica" >/tmp/cnp_cpu_count.csv
+grep -E "primary|replica" >$file_cnp_cpu_count
 
 while read LINE
 do
@@ -62,23 +74,23 @@ do
   cluster_name=`echo $cluster_line_new | awk -F "\"*,\"*" '{print $2}'`
   if [  $i -eq 1 ]; then
     cluster_name_old=$cluster_name
-    cat /tmp/cnp_cpu_count_header.csv >>/tmp/total_cpu.csv
+    cat $file_cnp_cpu_count_header >>$file_total_cpu
   fi
 
   if [ "$cluster_name" != "$cluster_name_old" ]; then
-    echo "-----------------------------------,-------------------" >> /tmp/total_cpu.csv
-    echo "Cluster $cluster_name_old CPU count:,$cluster_cpu_count_total(m) -> `expr $cluster_cpu_count_total \/ 1000` CPU's" >>/tmp/total_cpu.csv
-    echo ",,">>/tmp/total_cpu.csv
-    cat /tmp/cnp_cpu_count_header.csv >>/tmp/total_cpu.csv
+    echo "-----------------------------------,-------------------" >> $file_total_cpu
+    echo "Cluster $cluster_name_old CPU count:,$cluster_cpu_count_total(m) -> `expr $cluster_cpu_count_total \/ 1000` CPU's" >>$file_total_cpu
+    echo ",,">>$file_total_cpu
+    cat $file_cnp_cpu_count_header >>$file_total_cpu
     cluster_cpu_count=0
     cluster_cpu_count_total=0
     i=1
   fi
 
-  echo "$cluster_line_new" >>/tmp/total_cpu.csv
+  echo "$cluster_line_new" >>$file_total_cpu
 
   if [ "$cluster_name" = "$cluster_name_old" ] || [ $i -gt 0 ]; then
-    echo "$new_line" > /tmp/cnp_cpu_count_cluster.csv
+    echo "$new_line" > $file_cnp_cpu_count_cluster
     cluster_cpu_count=`echo $cluster_line_new | awk -F "\"*,\"*" '{print $6}'`
 
     if echo $cluster_cpu_count | grep -q "m"; then
@@ -95,14 +107,14 @@ do
   cluster_line_old=$cluster_line_new
   cluster_name_old=$cluster_name
 
-done < /tmp/cnp_cpu_count.csv
+done < $file_cnp_cpu_count
 
-echo "-----------------------------------,-------------------" >> /tmp/total_cpu.csv
-echo "Cluster $cluster_name CPU count:,$cluster_cpu_count_total(m) -> `expr $cluster_cpu_count_total \/ 1000` CPU's" >>/tmp/total_cpu.csv
-echo ",,">>/tmp/total_cpu.csv
-echo "-----------------------------------,-------------------" >> /tmp/total_cpu.csv
-echo "*** Global clusters CPU count ***,$cluster_cpu_count_total_k8s(m) -> `expr $cluster_cpu_count_total_k8s \/ 1000` CPU's" >>/tmp/total_cpu.csv
-echo "-----------------------------------,-------------------" >> /tmp/total_cpu.csv
+echo "-----------------------------------,-------------------" >> $file_total_cpu
+echo "Cluster $cluster_name CPU count:,$cluster_cpu_count_total(m) -> `expr $cluster_cpu_count_total \/ 1000` CPU's" >>$file_total_cpu
+echo ",,">>$file_total_cpu
+echo "-----------------------------------,-------------------" >> $file_total_cpu
+echo "*** Global clusters CPU count ***,$cluster_cpu_count_total_k8s(m) -> `expr $cluster_cpu_count_total_k8s \/ 1000` CPU's" >>$file_total_cpu
+echo "-----------------------------------,-------------------" >> $file_total_cpu
 
-cat /tmp/total_cpu.csv | sed -e 's/,,/, ,/g' | column -s, -t 
+cat $file_total_cpu | sed -e 's/,,/, ,/g' | column -s, -t 
 echo ""
