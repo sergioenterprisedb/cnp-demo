@@ -42,9 +42,7 @@ file_cnp_cpu_count_cluster="$dir/file_cnp_cpu_count_cluster.csv"
 file_cnp_cpu_count="$dir/cnp_cpu_count.csv"
 file_total_cpu="$dir/total_cpu.csv"
 
-if [[ ! -e $dir ]]; then
-    mkdir $dir
-fi
+mkdir -p $dir
 
 rm -f $file_cnp_cpu_count
 rm -f $file_cnp_cpu_count_cluster
