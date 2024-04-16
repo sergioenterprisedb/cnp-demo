@@ -9,6 +9,16 @@ spec:
 
   storage:
     size: 1Gi
+  walStorage:
+    size: 1Gi
+  tablespaces:
+  - name: idx
+    storage:
+      size: 1Gi
+  - name: tmptbs
+    temporary: true
+    storage:
+      size: 1Gi
 
   monitoring:
     enablePodMonitor: true

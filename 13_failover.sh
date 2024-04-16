@@ -8,6 +8,7 @@ printf "${yellow}Deleting pvc and pod from primary instance ${primary}...${reset
 
 #kubectl delete pvc/cluster-example-2 pod/cluster-example-2 --force
 printf "${green}kubectl delete pvc/${primary} pod/${primary} --force${reset}\n"
-kubectl delete pvc/${primary} pod/${primary} --force
-kubectl delete pod cluster-example-2 --force
+#kubectl delete pvc/${primary} pod/${primary} --force
+kubectl delete pvc/${primary} pod/${primary} pvc/${primary}-tbs-idx pvc/${primary}-tbs-tmptbs pvc/${primary}-wal --force
+#kubectl delete pod cluster-example-2 --force
 

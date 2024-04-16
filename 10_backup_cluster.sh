@@ -1,5 +1,9 @@
 #!/bin/bash
 . ./config.sh
+
+printf "${green}echo \"select pg_switch_wal()\" | kubectl-cnpg psql cluster-example${reset}\n"
+echo "select pg_switch_wal()" | kubectl-cnpg psql ${cluster_name}
+
 printf "${green}kubectl delete -f backup.yaml${reset}\n"
 kubectl delete -f backup.yaml
 

@@ -16,6 +16,6 @@ printf "${green}Grafana pid: ${red}$pid2${reset}\n"
 printf "\n"
 printf "${green}/!\ You have 5 minutes to demo. Good luck /!\\ ${reset}\n"
 printf "\n"
-sleep 150
+sleep 300
 kill $pid1
 kill $pid2

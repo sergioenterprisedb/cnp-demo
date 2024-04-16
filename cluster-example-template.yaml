@@ -24,15 +24,30 @@ spec:
     #updateInterval: 300
 
   minSyncReplicas: 1
-  maxSyncReplicas: 2
+  maxSyncReplicas: 1
 
   postgresql:
     parameters:
       pg_stat_statements.max: "10000"
       pg_stat_statements.track: all
+    pg_hba:
+      - host replication all all trust
+      - hostssl replication all all trust
+      - hostssl replication streaming_replica all cert
+      - host all all 0.0.0.0/0 md5
 
   storage:
     size: 1Gi
+  walStorage:
+    size: 1Gi
+  tablespaces:
+  - name: idx
+    storage:
+      size: 1Gi
+  - name: tmptbs
+    temporary: true
+    storage:
+      size: 1Gi
 
   monitoring:
     enablePodMonitor: true
