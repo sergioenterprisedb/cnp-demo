@@ -1,0 +1,66 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example1
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+
+  replicationSlots:
+    highAvailability:
+      enabled: true
+
+  storage:
+    size: 500Mi
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "0.3"
+    limits:
+      memory: "512Mi"
+      cpu: "0.3"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example2
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+
+  replicationSlots:
+    highAvailability:
+      enabled: true
+
+  storage:
+    size: 500Mi
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "0.3"
+    limits:
+      memory: "512Mi"
+      cpu: "0.3"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example3
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+
+  replicationSlots:
+    highAvailability:
+      enabled: true
+
+  storage:
+    size: 500Mi
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "0.3"
+    limits:
+      memory: "512Mi"
+      cpu: "0.3"
+
