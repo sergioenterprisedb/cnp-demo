@@ -5,9 +5,12 @@ kubectl_filter="\
 {.metadata.labels.cnpg\.io\/cluster}{','}\
 {.items[*]}{.status.phase}{','}\
 {.spec.containers[*].image}{','}\
-{.items[*]}{.metadata.labels.role}{','}{.items[*]}{.metadata.annotations.cnpg\.io\/operatorVersion}{'\n'}{end}"
+{.items[*]}{.metadata.labels.role}{','}\
+{.items[*]}{.spec.nodeName}{','}\
+{.items[*]}{.metadata.annotations.cnpg\.io\/operatorVersion}{'\n'}{end}"
 
-echo "Instance Name,Cluster Name,Status,Image Version,Role,Operator Version" > ./monitor.log
+echo "Instance Name,Cluster Name,Status,Image Version,Role,Node name,Operator Version" > ./monitor.log
+
 kubectl get pod -o=jsonpath="$kubectl_filter"  >> ./monitor.log
 cat monitor.log | sort | column -s, -t
 
