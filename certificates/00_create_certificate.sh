@@ -13,10 +13,12 @@ rm -f ${OUTPUT_DIR}/server.crt
 rm -f ${OUTPUT_DIR}/server.key
 rm -f ${OUTPUT_DIR}/server.csr
 
+ls $OUTPUT_DIR
+
 # Generate private key
 openssl genrsa -out "$KEY_FILE" 2048
 
-# Generate CSR
+# Generate CSR (Certificate Signing Request)
 openssl req -new -key "$KEY_FILE" -out "$OUTPUT_DIR/server.csr" -subj "/CN=$COMMON_NAME"
 
 # Generate self-signed certificate
