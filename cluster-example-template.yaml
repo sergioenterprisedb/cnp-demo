@@ -55,10 +55,10 @@ spec:
   resources:
     requests:
       memory: "512Mi"
-      cpu: "1"
+      cpu: "0.4"
     limits:
       memory: "1Gi"
-      cpu: "2"
+      cpu: "0.4"
 
   #affinity:
   #  nodeSelector:

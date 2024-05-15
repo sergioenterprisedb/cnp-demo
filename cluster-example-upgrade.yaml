@@ -19,6 +19,7 @@ spec:
     parameters:
       pg_stat_statements.max: "10000"
       pg_stat_statements.track: all
+      max_connections: "200"
       #timezone: "Europe/Amsterdam"
       #"pgaudit.log": "all, -misc"
       #"pgaudit.log_catalog": "off"
