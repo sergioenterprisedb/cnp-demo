@@ -63,6 +63,7 @@ kubectl get pod -A \
 {.metadata.labels.role},\
 {.spec.containers[*].resources.limits.cpu}\
 {'\n'}" | \
+sort | \
 grep -E "primary|replica" >$file_cnp_cpu_count
 
 while read LINE
