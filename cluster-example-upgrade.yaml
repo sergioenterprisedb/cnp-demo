@@ -45,7 +45,8 @@ spec:
     #target: "prefer-standby"
     barmanObjectStore:
       destinationPath: "s3://cnp/"
-      endpointURL: "http://192.168.1.18:9000"
+      #Minio local ip
+      endpointURL: "http://172.17.0.2:9000"
       s3Credentials:
         accessKeyId:
           name: minio-creds
