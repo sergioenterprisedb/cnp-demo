@@ -1,0 +1,28 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+  minSyncReplicas: 1
+  maxSyncReplicas: 1
+  #startDelay: 5
+  #nodeMaintenanceWindow:
+  #  inProgress: true
+  #  reusePVC: true
+  enableSuperuserAccess: true
+
+  replicationSlots:
+    highAvailability:
+      enabled: true
+
+  storage:
+    size: 1Gi
+
+  failoverDelay: 0
+  smartShutdownTimeout: 15
+  startDelay: 30
+  stopDelay: 30
+  switchoverDelay: 30
+
