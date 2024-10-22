@@ -9,14 +9,14 @@ spec:
 
   affinity:
     nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: datacenter
-                operator: In
-                values:
-                  - dc1
-                  - dc2
+      # requiredDuringSchedulingIgnoredDuringExecution:
+      #   nodeSelectorTerms:
+      #     - matchExpressions:
+      #         - key: datacenter
+      #           operator: In
+      #           values:
+      #             - dc1
+      #             - dc2
       preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
           preference:

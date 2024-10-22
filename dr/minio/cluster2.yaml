@@ -7,6 +7,26 @@ spec:
   imageName: ###IMAGENAME###
   enableSuperuserAccess: true
 
+  affinity:
+    nodeAffinity:
+      # requiredDuringSchedulingIgnoredDuringExecution:
+      #   nodeSelectorTerms:
+      #     - matchExpressions:
+      #         - key: datacenter
+      #           operator: In
+      #           values:
+      #             - dc1
+      #             - dc2
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+              - key: datacenter
+                operator: In
+                values:
+                  - dc1
+                  - dc2
+
   postgresql:
     parameters:
       pg_stat_statements.max: "10000"
@@ -26,7 +46,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: "###MINIO_DESTINATIONPATH###"
-      endpointURL: "###MINIO_ENDPOINTURL###"
+      #endpointURL: "###MINIO_ENDPOINTURL###"
       s3Credentials:
         accessKeyId:
           name: minio-creds
@@ -73,7 +93,7 @@ spec:
     barmanObjectStore:
       serverName: cluster1
       destinationPath: "###MINIO_DESTINATIONPATH###"
-      endpointURL: "###MINIO_ENDPOINTURL###"
+      #endpointURL: "###MINIO_ENDPOINTURL###"
       s3Credentials:
         accessKeyId:
           name: minio-creds
@@ -84,13 +104,13 @@ spec:
         sessionToken:
           name: minio-creds
           key: ACCESS_SESSION_TOKEN
-      wal:
-        compression: gzip
+      #wal:
+      #  compression: gzip
   - name: cluster2
     barmanObjectStore:
       serverName: cluster2
       destinationPath: "###MINIO_DESTINATIONPATH###"
-      endpointURL: "###MINIO_ENDPOINTURL###"
+      #endpointURL: "###MINIO_ENDPOINTURL###"
       s3Credentials:
         accessKeyId:
           name: minio-creds
@@ -101,5 +121,5 @@ spec:
         sessionToken:
           name: minio-creds
           key: ACCESS_SESSION_TOKEN
-      wal:
-        compression: gzip
+      #wal:
+      #  compression: gzip
