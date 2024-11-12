@@ -1,0 +1,17 @@
+cnp:
+  existingCluster: true
+  existingHost:  cluster-exmaple-rw
+  existingCredentials: cluster-example-superuser
+  existingDatabase: postgres
+
+pgbench:
+  # Node where to run pgbench
+  nodeSelector:
+    workload: pgbench
+  initialize: true
+  scaleFactor: 1
+  time: 600
+  clients: 10
+  jobs: 1
+  skipVacuum: false
+  reportLatencies: false
