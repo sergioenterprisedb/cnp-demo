@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cluster1
+  name: cluster2
 spec:
   instances: 3
   imageName: ###IMAGENAME###
@@ -9,14 +9,14 @@ spec:
 
   affinity:
     nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: datacenter
-                operator: In
-                values:
-                  - dc1
-                  - dc2
+      # requiredDuringSchedulingIgnoredDuringExecution:
+      #   nodeSelectorTerms:
+      #     - matchExpressions:
+      #         - key: datacenter
+      #           operator: In
+      #           values:
+      #             - dc1
+      #             - dc2
       preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
           preference:
@@ -32,19 +32,15 @@ spec:
       pg_stat_statements.max: "10000"
       pg_stat_statements.track: all
 
-  replica:
-    enabled: true
-    source: cluster2
-
   storage:
     size: 1Gi
 
   resources:
     requests:
-      cpu: "1"
+      cpu: "500m"
       memory: "500Mi"
     limits:
-      cpu: "1"
+      cpu: "500m"
       memory: "500Mi"
 
   backup:
@@ -63,17 +59,37 @@ spec:
           key: ACCESS_SESSION_TOKEN
       data:
         immediateCheckpoint: true
-      #wal:
-      #  compression: gzip
+      wal:
+        compression: gzip
     retentionPolicy: "1d"
 
+  # bootstrap:
+  #   recovery:
+  #     source: cluster1
+  bootstrap:
+    recovery:
+      backup:
+        name: cluster1-backup
+
   replica:
-    self: cluster1
+    self: cluster2
     primary: cluster1
-    source: cluster2
+    source: cluster1
 
   externalClusters:
   - name: cluster1
+    connectionParameters:
+      host: cluster1-rw
+      user: streaming_replica
+    sslKey:
+      name: cluster1-replication
+      key: tls.key
+    sslCert:
+      name: cluster1-replication
+      key: tls.crt
+    sslRootCert:
+      name: cluster1-ca
+      key: ca.crt
     barmanObjectStore:
       serverName: cluster1
       destinationPath: "###MINIO_DESTINATIONPATH###"

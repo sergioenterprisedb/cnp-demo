@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export git_repo_root=$(git rev-parse --show-toplevel)
+
 export IMAGENAME="ghcr.io/cloudnative-pg/postgresql:16.3"
 
 # MINIO
@@ -11,7 +13,7 @@ export MINIO_ENDPOINTURL="http://${HOSTNAME}:${MINIO_PORT}"
 
 # S3 AWS
 export MINIO_DESTINATIONPATH="s3://sergio1-bucket/"
-. ./.aws.sh
+. ${git_repo_root}/dr/.aws.sh
 
 # S3 LS
 #AWS_ENDPOINT_URL=https://us-east-1.console.aws.amazon.com/s3/buckets/sergio1-bucket/
