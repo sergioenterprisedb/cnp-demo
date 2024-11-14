@@ -9,7 +9,7 @@ kubectl cnpg pgbench \
   --scale 20 \
   --index-tablespace=idx
 
-sleep 5 
+sleep 25 
 
 kubectl logs  jobs/pgbench-init
 sleep 2
@@ -17,10 +17,13 @@ sleep 2
 kubectl cnpg pgbench \
   --job-name pgbench-run \
   cluster-example \
-  -- --time 10 \
+  -- --time 20 \
   --client 32 \
   --jobs 8
-sleep 20
+sleep 40
 
 kubectl logs jobs/pgbench-run
+
+kubectl delete jobs pgbench-init
+kubectl delete jobs pgbench-run
 

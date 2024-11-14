@@ -1,0 +1,109 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster1
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+  enableSuperuserAccess: true
+
+  affinity:
+    nodeAffinity:
+      # requiredDuringSchedulingIgnoredDuringExecution:
+      #   nodeSelectorTerms:
+      #     - matchExpressions:
+      #         - key: datacenter
+      #           operator: In
+      #           values:
+      #             - dc1
+      #             - dc2
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+              - key: datacenter
+                operator: In
+                values:
+                  - dc1
+                  - dc2
+
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+
+  replica:
+    enabled: true
+    source: cluster2
+
+  storage:
+    size: 1Gi
+
+  resources:
+    requests:
+      cpu: "1"
+      memory: "500Mi"
+    limits:
+      cpu: "1"
+      memory: "500Mi"
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://sergio1-bucket/"
+      #endpointURL: "http://172.17.0.2:9000"
+      s3Credentials:
+        accessKeyId:
+          name: minio-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio-creds
+          key: ACCESS_SECRET_KEY
+        sessionToken:
+          name: minio-creds
+          key: ACCESS_SESSION_TOKEN
+      data:
+        immediateCheckpoint: true
+      #wal:
+      #  compression: gzip
+    retentionPolicy: "1d"
+
+  replica:
+    self: cluster1
+    primary: cluster1
+    source: cluster2
+
+  externalClusters:
+  - name: cluster1
+    barmanObjectStore:
+      serverName: cluster1
+      destinationPath: "s3://sergio1-bucket/"
+      #endpointURL: "http://172.17.0.2:9000"
+      s3Credentials:
+        accessKeyId:
+          name: minio-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio-creds
+          key: ACCESS_SECRET_KEY
+        sessionToken:
+          name: minio-creds
+          key: ACCESS_SESSION_TOKEN
+      #wal:
+      #  compression: gzip
+  - name: cluster2
+    barmanObjectStore:
+      serverName: cluster2
+      destinationPath: "s3://sergio1-bucket/"
+      #endpointURL: "http://172.17.0.2:9000"
+      s3Credentials:
+        accessKeyId:
+          name: minio-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio-creds
+          key: ACCESS_SECRET_KEY
+        sessionToken:
+          name: minio-creds
+          key: ACCESS_SESSION_TOKEN
+      #wal:
+      #  compression: gzip
