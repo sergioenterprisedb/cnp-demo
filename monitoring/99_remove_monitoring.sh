@@ -11,3 +11,6 @@ kubectl delete crd prometheusagents.monitoring.coreos.com
 #helm uninstall prometheus-community/kube-prometheus-stack
 helm repo remove prometheus-community
 
+# Uninstall Grafana
+helm uninstall cnpg-grafana-cluster
+helm repo remove cnpg-grafana

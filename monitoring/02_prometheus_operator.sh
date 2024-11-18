@@ -9,3 +9,8 @@ helm upgrade --install \
   -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/kube-stack-config.yaml \
   prometheus-community \
   prometheus-community/kube-prometheus-stack
+
+sleep 5
+kubectl apply -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/prometheusrule.yaml
+
