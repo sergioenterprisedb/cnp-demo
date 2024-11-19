@@ -4,7 +4,7 @@ metadata:
   name: cluster-example
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.4
   #imagePullPolicy: Always
   minSyncReplicas: 1
   maxSyncReplicas: 1
