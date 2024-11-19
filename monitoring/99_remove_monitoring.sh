@@ -14,3 +14,6 @@ helm repo remove prometheus-community
 # Uninstall Grafana
 helm uninstall cnpg-grafana-cluster
 helm repo remove cnpg-grafana
+
+kubectl delete namespace prometheus
+kubectl delete namespace grafana
