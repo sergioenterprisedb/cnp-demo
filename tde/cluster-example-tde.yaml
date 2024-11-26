@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  #key: $(echo -n "Thisismypassword01" | base64)
+  key: VGhpc2lzbXlwYXNzd29yZDAx
+kind: Secret
+metadata:
+  name: tde-key
+---
+apiVersion: postgresql.k8s.enterprisedb.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example-tde
+spec:
+  instances: 1
+  imageName: 'quay.io/enterprisedb/edb-postgres-advanced:16.2'
+  licenseKey: 'your_lic'
+  enableSuperuserAccess: true
+  postgresql:
+    epas:
+      tde:
+        enabled: true
+        secretKeyRef:
+          name: tde-key
+          key: key
+
+  storage:
+    size: 1Gi
+
+  bootstrap:
+    initdb:
+      redwood: true
