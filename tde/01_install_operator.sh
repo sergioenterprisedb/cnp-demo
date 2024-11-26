@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.0.yaml
-#kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.1.yaml
-#kubectl delete -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.23/releases/cnpg-1.23.2.yaml
+#
+# Warning: EDB Postgres for Kubernetes images are not compatible with ARM architectures
+#
 
 # Create namespace
 kubectl create namespace postgresql-operator-system
@@ -28,6 +28,5 @@ kubectl apply --server-side -f \
    https://get.enterprisedb.io/pg4k/pg4k-$EDB_SUBSCRIPTION_PLAN-${version1}.yaml
 
 sleep 15
-#kubectl get deployment -n postgresql-operator-system postgresql-operator-controller-manager
 kubectl get deployments.apps -n postgresql-operator-system
 
