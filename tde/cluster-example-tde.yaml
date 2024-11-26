@@ -12,8 +12,10 @@ metadata:
   name: cluster-example-tde
 spec:
   instances: 1
-  imageName: 'quay.io/enterprisedb/edb-postgres-advanced:16.2'
-  licenseKey: 'your_lic'
+  #imageName: 'quay.io/enterprisedb/edb-postgres-advanced:16.2'
+  #imageName: 'docker.enterprisedb.com/k8s_enterprise/edb-postgres-advanced:16.1'
+  imageName: 'docker.enterprisedb.com/k8s_enterprise/edb-postgres-advanced:17'
+
   enableSuperuserAccess: true
   postgresql:
     epas:
