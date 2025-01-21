@@ -12,10 +12,20 @@ metadata:
   name: cluster-restore
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.4
 
   storage:
     size: 1Gi
+  walStorage:
+    size: 1Gi
+  tablespaces:
+  - name: idx
+    storage:
+      size: 1Gi
+  - name: tmptbs
+    temporary: true
+    storage:
+      size: 1Gi
 
   bootstrap:
     recovery:
@@ -28,7 +38,7 @@ spec:
     - name: cluster-example
       barmanObjectStore:
         destinationPath: "s3://cnp/"
-        endpointURL: "http://${ip}:9000"
+        endpointURL: "http://172.17.0.2:9000"
         s3Credentials:
           accessKeyId:
             name: minio-creds
