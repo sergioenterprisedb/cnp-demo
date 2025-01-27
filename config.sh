@@ -1,7 +1,7 @@
 #!/bin/bash
 
 kubectl_cmd="kubectl"
-kubectl_cnp="kubectl-cnp"
+kubectl_cnp="kubectl-cnpg"
 cluster_name="cluster-example"
 
 reset="\e[0m" #reset color
