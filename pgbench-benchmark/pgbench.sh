@@ -62,9 +62,9 @@ sleep 5
 
 printf "${green}Running job pgbench-init...${reset}\n"
 ${kubectl_cnp} pgbench \
-  --job-name pgbench-init ${cluster_name}   \
-  -- --initialize \
-  --scale 20 --progress 1 
+  --job-name pgbench-init ${cluster_name} -- --initialize
+
+#  --scale 10 --progress 1 
 
 # Set the job name and namespace
 JOB_NAME="pgbench-init"
