@@ -7,10 +7,13 @@ kubectl delete -f https://get.enterprisedb.io/cnp/postgresql-operator-1.23.1.yam
 kubectl delete -f https://get.enterprisedb.io/cnp/postgresql-operator-1.23.2.yaml
 kubectl delete -f https://get.enterprisedb.io/cnp/postgresql-operator-1.24.1.yaml
 kubectl delete secret tde-key
+
+kubectl delete namespace postgresql-operator-system
+
 rm tde_file.log
 
 . ../config.sh
-. ./.credentials
+. ./.credentials.sh
 
 version1=`kubectl cnpg version | awk '{ print $2 }' | awk -F":" '{ print $2}'`
 version2=${version1%??}

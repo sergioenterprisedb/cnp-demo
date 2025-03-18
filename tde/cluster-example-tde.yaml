@@ -14,20 +14,28 @@ spec:
   instances: 1
   #imageName: 'quay.io/enterprisedb/edb-postgres-advanced:16.2'
   #imageName: 'docker.enterprisedb.com/k8s_enterprise/edb-postgres-advanced:16.1'
-  imageName: 'docker.enterprisedb.com/k8s_enterprise/edb-postgres-advanced:17'
+  #imageName: 'docker.enterprisedb.com/k8s_enterprise/edb-postgres-advanced:17.2'
+  #imageName: docker.enterprisedb.com/k8s_enterprise/edb-postgres-extended:15.10-2
+
+  imageCatalogRef:
+    apiGroup: postgresql.k8s.enterprisedb.io
+    kind: ImageCatalog
+    name: postgresql
+    #name: edb-postgres-advanced
+    major: 17
 
   enableSuperuserAccess: true
-  postgresql:
-    epas:
-      tde:
-        enabled: true
-        secretKeyRef:
-          name: tde-key
-          key: key
+  #postgresql:
+  #  epas:
+  #    tde:
+  #      enabled: true
+  #      secretKeyRef:
+  #        name: tde-key
+  #        key: key
 
   storage:
     size: 1Gi
 
-  bootstrap:
-    initdb:
-      redwood: true
+  #bootstrap:
+  #  initdb:
+  #    redwood: true

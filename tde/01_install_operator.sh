@@ -4,15 +4,20 @@
 # Warning: EDB Postgres for Kubernetes images are not compatible with ARM architectures
 #
 
+# Install plugin
+curl -sSfL \
+  https://github.com/EnterpriseDB/kubectl-cnp/raw/main/install.sh | \
+  sudo sh -s -- -b /usr/local/bin
+
 # Create namespace
 kubectl create namespace postgresql-operator-system
 
 . ../config.sh
 . ./.credentials.sh
 
-docker login docker.enterprisedb.com -u $EDB_SUBSCRIPTION_PLAN -p $EDB_SUBSCRIPTION_TOKEN
+docker login docker.enterprisedb.com -u k8s_$EDB_SUBSCRIPTION_PLAN -p $EDB_SUBSCRIPTION_TOKEN
 
-version1=`kubectl cnpg version | awk '{ print $2 }' | awk -F":" '{ print $2}'`
+version1=`kubectl cnp version | awk '{ print $2 }' | awk -F":" '{ print $2}'`
 version2=${version1%??}
 printf "${green}kubectl apply --force-conflicts --server-side -f https://get.enterprisedb.io/cnp/postgresql-operator-${version1}.yaml${reset}\n"
 
