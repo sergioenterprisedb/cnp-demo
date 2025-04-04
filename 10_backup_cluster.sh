@@ -1,6 +1,9 @@
 #!/bin/bash
 . ./config.sh
 
+# Doc
+echo 10 > ./docs/docid
+
 printf "${green}echo \"select pg_switch_wal()\" | kubectl-cnpg psql cluster-example${reset}\n"
 echo "select pg_switch_wal()" | kubectl-cnpg psql ${cluster_name}
 

@@ -2,6 +2,8 @@
 
 . ./config.sh
 
+# Doc
+echo 05 > ./docs/docid
 
 printf "${green}kubectl create secret generic minio-creds --from-literal=MINIO_ACCESS_KEY=admin --from-literal=MINIO_SECRET_KEY=password${reset}\n"
 

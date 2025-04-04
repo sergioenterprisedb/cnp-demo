@@ -1,6 +1,9 @@
 #!/bin/bash
 . ./config.sh
 
+# Doc
+echo 13 > ./docs/docid
+
 . ./primary.sh
 
 printf "${yellow}Deleting pvc and pod from primary instance ${primary}...${reset}\n"
