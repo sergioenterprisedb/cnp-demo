@@ -27,6 +27,10 @@ LAST_ID=""
 
 function printf_text()
 {
+  # Description: Print text with the right width length
+  # Date: 08/05/2025
+  # Author: Sergio Romera
+
   text_before="$1"
   text="$2"
   text_after="$3"
@@ -47,6 +51,10 @@ function printf_text()
 
 function docs()
 {
+  # Description: Format .md file with colors
+  # Date: 08/05/2025
+  # Author: Sergio Romera
+
   # Check if input file is provided
   if [ "$#" -ne 1 ]; then
       echo "Usage: $0 input.md"
@@ -54,8 +62,7 @@ function docs()
   fi
 
   INPUT_FILE="$1"
-  TEMP_FILE=$(mktemp)
-
+  
   # Code
   IN_CODE_BLOCK=false
 
@@ -91,13 +98,9 @@ function docs()
         printf_text "${NORMAL}" "$line" "${RESET}"
       fi
     fi
-  done < "$INPUT_FILE" > "$TEMP_FILE"
+    sleep 0.05
+  done < "$INPUT_FILE"
 
-  # Show temp file
-  cat $TEMP_FILE
-
-  # Delete temp file
-  rm $TEMP_FILE
 }
 
 
@@ -126,5 +129,6 @@ while true; do
   if [[ $key == $'\e' ]]; then
     break
   fi
+  sleep 1
 done
 
