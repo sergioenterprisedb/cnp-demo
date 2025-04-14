@@ -17,7 +17,7 @@ In this demo I'll show you how to create a Postgres cluster with CloudNativePG k
 - Monitoring (Prometheus/Grafana)
 - Operator upgrade
 - PostgreSQL audit with PGAudit
-- Last CloudNativePG tested version is 1.20.2
+- Last CloudNativePG tested version is 1.25.1
 
 # Prerequisites
 
