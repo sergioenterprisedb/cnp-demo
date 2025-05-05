@@ -1,5 +1,9 @@
 #!/bin/bash
+
 . ./config.sh
+
+echo 16 > ./docs/docid
+
 printf "${green}kubectl delete -f backup.yaml${reset}\n"
 kubectl delete -f backup.yaml
 sleep 3

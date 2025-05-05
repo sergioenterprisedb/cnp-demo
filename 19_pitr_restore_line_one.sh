@@ -1,5 +1,8 @@
 #!/bin/bash
+
 . ./config.sh
+
+echo 16 > ./docs/docid
 
 pitr_date=$(kubectl exec -it cluster-example-1 -- psql -X -A -t -c "select min(timestamp+interval '1 second') from test;") 
 echo "${pitr_date%?}"
