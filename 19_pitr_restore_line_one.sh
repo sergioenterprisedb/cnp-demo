@@ -4,10 +4,16 @@
 
 echo 16 > ./docs/docid
 
-pitr_date=$(kubectl exec -it cluster-example-1 -- psql -X -A -t -c "select min(timestamp+interval '1 second') from test;") 
+#pitr_date=$(kubectl exec -it cluster-example-1 -- psql -X -A -t -c "select min(timestamp+interval '1 second') from test;") 
+pitr_date=$(kubectl exec cluster-example-1 -- psql -X -A -t -c "select min(timestamp + interval '1 second') from test;")
+
 echo "${pitr_date%?}"
-ip=`./get_ip.sh`
-printf 'IP: $ip'
+#ip=`./get_ip.sh`
+#printf 'IP: $ip'
+
+ip=$(./get_ip.sh)
+printf "IP: %s\n" "$ip"
+
 cat > ./pitr/restore.yaml <<EOF
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster

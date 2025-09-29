@@ -48,6 +48,7 @@ spec:
 
   backup:
     #target: "prefer-standby"
+    target: "primary"
     barmanObjectStore:
       destinationPath: "s3://cnp/"
       #Minio local ip
