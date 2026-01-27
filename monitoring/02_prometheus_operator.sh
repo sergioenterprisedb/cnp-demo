@@ -12,15 +12,20 @@ printf "${green}helm upgrade --install \
 printf "${green}kubectl apply -f \
   https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/prometheusrule.yaml${reset}\n"
 
+# Create namespaces
 kubectl create namespace prometheus
 kubectl create namespace grafana
 
+# Helm
 helm upgrade --install \
   -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/kube-stack-config.yaml \
   prometheus-community \
   prometheus-community/kube-prometheus-stack --namespace prometheus
 
+# Apply prometheus rules
 sleep 5
 kubectl apply -f \
   https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/prometheusrule.yaml
 
+# Create podMonitor
+kubectl apply -f monitoring.yaml

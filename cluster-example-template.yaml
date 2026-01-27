@@ -14,6 +14,7 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:16.2
+
   enableSuperuserAccess: true
 
   # Reduce the frequency of standby HA slots updates to once every 5 minutes
@@ -53,8 +54,8 @@ spec:
     storage:
       size: 1Gi
 
-  monitoring:
-    enablePodMonitor: true
+  #monitoring:
+  #  enablePodMonitor: true
 
   resources:
     requests:
