@@ -1,28 +1,28 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cluster-example
+  name: cluster-example2
 spec:
-  instances: 2
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.5
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1
 
-  minSyncReplicas: 1
-  maxSyncReplicas: 1
-
-  nodeMaintenanceWindow:
-    inProgress: true
-    reusePVC: true
-
-  replicationSlots:
-    highAvailability:
-      enabled: true
 
   storage:
     size: 500Mi
   resources:
     requests:
-      memory: "512Mi"
+      memory: "1Gi"
       cpu: "0.3"
     limits:
-      memory: "512Mi"
+      memory: "1Gi"
       cpu: "0.3"
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: datacenter
+                operator: In
+                values:
+                  - dc2
